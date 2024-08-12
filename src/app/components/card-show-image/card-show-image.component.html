@@ -1,0 +1,81 @@
+<div class="containerImages">
+  <div class="containerImage" *ngFor="let source of information; let i = index">
+    <img
+      (click)="redirect(source.data[0].nasa_id)"
+      *ngIf="source.data[0].media_type != 'audio'"
+      src="{{ source.links[0].href }}"
+      loading="lazy"
+    />
+    <div
+      (click)="redirect(source.data[0].nasa_id)"
+      *ngIf="source.data[0].media_type == 'audio'"
+      class="audioContainer"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="40px"
+        viewBox="0 -960 960 960"
+        width="40px"
+        fill="#e8eaed"
+      >
+        <path
+          d="M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47Z"
+        />
+      </svg>
+    </div>
+    <div class="badgeTypeView" *ngIf="source.data[0].media_type != 'audio'">
+      <svg
+        *ngIf="source.data[0].media_type == 'video'"
+        xmlns="http://www.w3.org/2000/svg"
+        height="25px"
+        viewBox="0 -960 960 960"
+        width="25px"
+        fill="#e8eaed"
+      >
+        <path
+          d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h480q33 0 56.5 23.5T720-720v180l160-160v440L720-420v180q0 33-23.5 56.5T640-160H160Zm0-80h480v-480H160v480Zm0 0v-480 480Z"
+        />
+      </svg>
+      <svg
+        *ngIf="source.data[0].media_type == 'image'"
+        xmlns="http://www.w3.org/2000/svg"
+        height="25px"
+        viewBox="0 -960 960 960"
+        width="25px"
+        fill="#e8eaed"
+      >
+        <path
+          d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"
+        />
+      </svg>
+    </div>
+    <div class="wishBadge" (click)="userService.setWishList(source)">
+      <svg
+        *ngIf="!userService.wishListKeys.includes(source.data[0].nasa_id)"
+        xmlns="http://www.w3.org/2000/svg"
+        height="25px"
+        viewBox="0 -960 960 960"
+        width="25px"
+        fill="#fc3d21"
+      >
+        <path
+          d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+        />
+      </svg>
+
+      <svg
+        *ngIf="userService.wishListKeys.includes(source.data[0].nasa_id)"
+        width="25px"
+        height="25px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"
+          fill="#fc3d21"
+        />
+      </svg>
+    </div>
+  </div>
+</div>

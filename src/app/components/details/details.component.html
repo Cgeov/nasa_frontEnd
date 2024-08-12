@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+
+<div class="pageDetails">
+  <div class="infoContainer" *ngIf="docStatus == 'success'">
+    <div>
+      <img
+        class="imgContainer"
+        *ngIf="typeMedia == 'image'"
+        src="{{ imagesSource }}"
+      />
+
+      <video *ngIf="typeMedia == 'video' && imagesSource.length > 0" width="100%" controls="" autoplay="" name="media">
+        <source src="{{ imagesSource }}" type="video/mp4" />
+      </video>
+      <audio
+        controls
+        *ngIf="typeMedia == 'audio'"
+        src="{{ imagesSource }}"
+        type="audio/mp3"
+        style="width: 100%"
+      ></audio>
+      <div class="expansionPanel" *ngIf="exifEntries.length > 0">
+        <div class="panelHeader" (click)="toggle()">
+          <h3>EXIF data</h3>
+          <span class="toggleIcon" [class.open]="isOpen">+</span>
+        </div>
+        <div class="panelContent" *ngIf="isOpen">
+          <table class="tableExif">
+            <tbody>
+              <tr *ngFor="let exif of exifEntries">
+                <td class="titleTable">{{ exif.key + ":" }}</td>
+                <td>{{ exif.value }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1>{{ information["AVAIL:Title"] }}</h1>
+      <p>
+        Nasa ID: <span>{{ information["AVAIL:NASAID"] }}</span>
+      </p>
+
+      <p>{{ information["AVAIL:Description"] }}</p>
+      <p>Date Created: {{ information["AVAIL:DateCreated"] }}</p>
+      <p>Center: {{ information["AVAIL:Center"] }}</p>
+      <div>
+        <p>
+          Keywords:
+          <span *ngFor="let keyword of information['AVAIL:Keywords']">
+            {{ keyword }}
+          </span>
+        </p>
+      </div>
+      <p>
+        Albums:
+        <span *ngFor="let album of information['AVAIL:Album']">
+          {{ album }}
+        </span>
+      </p>
+      <p>Location: {{ information["AVAIL:Location"] }}</p>
+      <p>Photographer: {{ information["AVAIL:Photographer"] }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="docStatus == 'error'">Documento no existe</div>
+
+  <div *ngIf="docStatus == 'waiting'" class="infoContainer">
+    <div class="imageSkeletonContainer">
+      <div></div>
+      <div></div>
+    </div>
+    <div class="infoSkeletonContainer">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>

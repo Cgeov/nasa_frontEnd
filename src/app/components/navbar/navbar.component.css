@@ -1,0 +1,126 @@
+.navbarContainer {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 10px;
+  padding-inline: 5%;
+  width: calc(100% - 10%);
+  background-color: white;
+  z-index: 100;
+}
+
+.navbarContainer img {
+  width: 80px;
+  cursor: pointer;
+}
+
+.desktopNav {
+  display: none;
+}
+
+.headerNavbar {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 10px;
+  align-items: center;
+  padding-block: 10px;
+}
+
+mat-drawer {
+  position: fixed;
+  left: 0px;
+  width: 100%;
+}
+
+.mat-drawer-container {
+  background-color: transparent;
+}
+
+.opcNav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 35px;
+  padding-bottom: 30px;
+  color: #0032a0;
+  font-size: 20px;
+  margin-inline: 20px;
+  border-bottom: 1px solid #0032a0;
+}
+
+.opcNav p {
+  margin: 0;
+}
+
+.opcGoogle {
+  background-color: #fc3d21;
+  margin-top: 30px;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  border-bottom: none;
+}
+
+.bottomNavbarMobile {
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  text-align: center;
+  padding-block: 20px;
+}
+
+.bottomNavbarMobile div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #0032a0;
+}
+
+.bottomNavbarMobile div:nth-child(1) {
+  border-right: 1px solid #0032a0;
+}
+
+.responsiveMargin{
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+  .desktopNav {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    
+  }
+  .mobileNav {
+    display: none;
+  }
+
+  .opcNav {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 1s ease;
+  }
+  .opcNav:hover{
+    border-bottom: 1.5px solid #0032a0;
+    cursor: pointer;
+  }
+  .opcGoogle{
+    padding: 10px;
+    height: fit-content;
+    margin-top: 0;
+    margin-inline: 0
+  }
+
+  .opcGoogle:hover{
+    border: none;
+  }
+}

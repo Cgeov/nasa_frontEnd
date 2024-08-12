@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+<div class="pageHome">
+  <div class="configurationsContainer">
+    <div>
+      <div class="inputContainer">
+        <input
+          [value]="textsearch"
+          (input)="textChanged($event)"
+          placeholder="Search..."
+          type="search"
+        />
+        <div (click)="search()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="30px"
+            viewBox="0 -960 960 960"
+            width="30px"
+            fill="white"
+          >
+            <path
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div>
+        <div mat-button [matMenuTriggerFor]="menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="30px"
+            viewBox="0 -960 960 960"
+            width="30px"
+            fill="#0032A0"
+          >
+            <path
+              d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"
+            />
+          </svg>
+        </div>
+        <mat-menu #menu="matMenu" style="width: 500px; min-width: 500px">
+          <div class="menuOptions">
+            <div>
+              <p class="titleMenu">Media Type:</p>
+              <div class="mediaChipsContainer">
+                <div
+                  *ngFor="let media of chipsTipeMedia"
+                  (click)="setMediaType(media)"
+                  class="{{
+                    chipsMediaSelected.includes(media)
+                      ? 'selectedChipMedia'
+                      : 'normalChipMedia'
+                  }}"
+                >
+                  {{ media }}
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="titleMenu">Range Year:</p>
+              <div class="custom-slider">
+                <ngx-slider
+                  [value]="1970"
+                  (valueChange)="valueSliderChange($event)"
+                  (highValueChange)="highValueSliderChange($event)"
+                  [highValue]="options.ceil!"
+                  [options]="options"
+                ></ngx-slider>
+              </div>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+
+    <section class="typeContainerData">
+      <div
+        class="{{
+          typeSourceSelected == type ? 'typeDataSelected' : 'typeData'
+        }}"
+        *ngFor="let type of opcTypeSource"
+        (click)="changeType(type)"
+      >
+        <div *ngIf="typeSourceSelected == type">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#e8eaed"
+          >
+            <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
+          </svg>
+        </div>
+        {{ type }}
+      </div>
+    </section>
+  </div>
+
+  <section
+    *ngIf="
+      informationService.recent.length > 0 &&
+      typeSourceSelected == 'recent' &&
+      !flagSearch
+    "
+  >
+    <app-card-show-image
+      [information]="informationService.recent"
+    ></app-card-show-image>
+  </section>
+
+  <section
+    *ngIf="
+      informationService.popular.length > 0 &&
+      typeSourceSelected == 'popular' &&
+      !flagSearch
+    "
+  >
+    <app-card-show-image
+      [information]="informationService.popular"
+    ></app-card-show-image>
+  </section>
+
+  <section *ngIf="flagSearch">
+    <app-card-show-image [information]="searchItems"></app-card-show-image>
+    <div class="emptycard" *ngIf="searchItems.length == 0">
+      <img src="../../../assets/folder-empty.svg">
+      <p>No se encontro nada en la busqueda {{':('}}</p>
+    </div>
+  </section>
+</div>

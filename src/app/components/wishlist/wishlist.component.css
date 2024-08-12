@@ -1,0 +1,54 @@
+.containerWishlist {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+h2{
+    color: #0032a0;
+}
+
+.cardWish {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-gap: 20px;
+  gap: 20px;
+  border-radius: 10px;
+  border: 1px solid #0032a0;
+  margin-bottom: 15px;
+  background: #0032a024;
+  color: #0032a0;
+  height: 120px;
+}
+
+.imageSideCont {
+  position: relative;
+  height: 120px;
+}
+
+.imageSideCont img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  object-fit: cover;
+}
+
+.sideInformation {
+  margin-top: 10px;
+}
+
+.sideInformation p:nth-child(1) {
+  font-weight: 500;
+}
+
+.sideInformation p:nth-child(2) {
+  font-size: x-small;
+}
+
+@media screen and (min-width: 800px) {
+    .containerWishlist{
+        grid-template-columns: 1fr 1fr;
+    }
+}

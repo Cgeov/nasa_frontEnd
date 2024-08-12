@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.containerImage {
+  position: relative;
+  width: 90%;
+  margin-inline: auto;
+  max-width: 1200px;
+}
+
+.containerImage img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.badgeTypeView {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 30px;
+  padding: 5px;
+  background-color: #0032a0;
+  text-align: center;
+  display: flex;
+}
+
+.wishBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 20px;
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.audioContainer{
+  height: 200px;
+  width: 100%;
+  background-color: #c0c0c0;
+  object-fit: cover;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerImages {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* USANDO MOBILE FIRST */
+
+@media screen and (min-width: 500px) {
+  .containerImages {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .containerImages {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .containerImages {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
